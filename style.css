@@ -1,0 +1,195 @@
+body {
+    height: 100vh;
+    background-color: #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputBox {
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 8px;
+    margin: 10px;
+    height: 50px;
+    background-color: rgb(228, 228, 228);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+#inputBoxName{
+    display: none;
+}
+
+#name1{
+    width: 300px;
+}
+#name2{
+    width: 300px;
+}
+.inputBoxOuter{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+#button{
+    color: #727272;
+}
+
+.mainBox {
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.outerBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.line {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 5px;
+    background-color: #000;
+}
+
+.virtical {
+    right: 8%;
+    position: absolute;
+    width: 300px;
+    height: 5px;
+    background-color: #000;
+}
+
+#top {
+    display: none;
+    top: 15%;
+    animation: fadeIn 1s ease forwards;
+}
+
+#middle {
+    display: none;
+    animation: fadeIn 1s ease forwards;
+}
+
+#bottom {
+    display: none;
+    bottom: 15%;
+    animation: fadeIn 1s ease forwards;
+}
+
+#horiTop {
+    display: none;
+    right: 42%;
+    transform: rotate(90deg);
+    animation: fadeIn 1s ease forwards;
+}
+
+#horiMiddle {
+    display: none;
+    transform: rotate(90deg);
+    animation: fadeIn 1s ease forwards;
+}
+
+#horiBottom {
+    display: none;
+    left: 42%;
+    transform: rotate(90deg);
+    animation: fadeIn 1s ease forwards;
+}
+
+.diag-1 {
+    display: none;
+    transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    animation: fadeIn 1s ease forwards;
+}
+
+.diag-2 {
+    display: none;
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    animation: fadeIn 1s ease forwards;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 8px;
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    background-color: rgb(228, 228, 228);
+    cursor: pointer;
+}
+
+.box:hover {
+    background-color: #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.box:active {
+    background-color: #ccc;
+}
+
+.box-wide {
+    grid-column: span 2;
+}
+#button:hover {
+    background-color: #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+#button:active {
+    background-color: #ccc;
+}
+
+#button-wide {
+    grid-column: span 2;
+}
+
+.result {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    border-radius: 8px;
+    font-size: 24px;
+    position: absolute;
+    height: 320px;
+    width: 320px;
+    background-color: #ddd;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

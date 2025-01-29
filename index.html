@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="inputBoxOuter" class="inputBoxOuter">
+        <input type="text" class="inputBox" id="inp1" placeholder="Enter First player name" required>
+        <input type="text" class="inputBox" id="inp2" placeholder="Enter Second player name" required>
+        <button onclick="playerTake()" class="inputBox" id="button">Submit</button>
+    </div>
+
+    <div class="inputBoxOuter" id="inputBoxName">
+        <div class="inputBox" id="name1"></div>
+        <div class="inputBox" id="name2"></div>
+        <div class="inputBox" id="name3">x's Turn First</div>
+        <button class="inputBox" onclick="ok()">Ok</button>
+    </div>
+
+    <div class="mainBox" id="mainBox">
+        <div class="line diag diag-1" id="diag1"></div>
+        <div class="line diag diag-2" id="diag2"></div>
+        <div class="virticalOuter">
+            <div class=" virtical" onclick="play(this)" id="top"></div>
+            <div class=" virtical" onclick="play(this)" id="middle"></div>
+            <div class=" virtical" onclick="play(this)" id="bottom"></div>
+        </div>
+        <div class="virticalOuter">
+            <div class=" virtical" onclick="play(this)" id="horiTop"></div>
+            <div class=" virtical" onclick="play(this)" id="horiMiddle"></div>
+            <div class=" virtical" onclick="play(this)" id="horiBottom"></div>
+        </div>
+        <div class="outerBox">
+            <div class="box" onclick="play(this)" id="box1"></div>
+            <div class="box" onclick="play(this)" id="box2"></div>
+            <div class="box" onclick="play(this)" id="box3"></div>
+        </div>
+        <div class="outerBox">
+            <div class="box" onclick="play(this)" id="box4"></div>
+            <div class="box" onclick="play(this)" id="box5"></div>
+            <div class="box" onclick="play(this)" id="box6"></div>
+        </div>
+        <div class="outerBox">
+            <div class="box" onclick="play(this)" id="box7"></div>
+            <div class="box" onclick="play(this)" id="box8"></div>
+            <div class="box" onclick="play(this)" id="box9"></div>
+        </div>
+        <div class="result" id="result">
+        </div>
+    </div>
+</body>
+<script src="javaScript.js"></script>
+
+</html>
