@@ -1,12 +1,4 @@
-let box1 = document.getElementById("box1");
-let box2 = document.getElementById("box2");
-let box3 = document.getElementById("box3");
-let box4 = document.getElementById("box4");
-let box5 = document.getElementById("box5");
-let box6 = document.getElementById("box6");
-let box7 = document.getElementById("box7");
-let box8 = document.getElementById("box8");
-let box9 = document.getElementById("box9");
+let box = document.getElementsByClassName("box");
 let virtop = document.getElementById("top");
 let virmiddle = document.getElementById("middle");
 let virbottom = document.getElementById("bottom");
@@ -24,32 +16,26 @@ let inputBoxName = document.getElementById("inputBoxName");
 let name1 = document.getElementById("name1");
 let name2 = document.getElementById("name2");
 
-
 function playerTake() {
     inputBoxOuter.style.display = "none"
     inputBoxName.style.display = "flex";
-    name1.innerText=inp1.value + " x  "
-    name2.innerText=inp2.value + " 0  "
+    name1.innerText = inp1.value + " X ";
+    name2.innerText = inp2.value + " 0 ";
 }
 
-function ok(){
+function ok() {
     inputBoxName.style.display = "none";
     mainBox.style.display = "flex";
 }
 
-let chance = "X"
+let chance = "X";
 
 function changeChance() {
-    if (chance == "X") {
-        chance = "0";
-    }
-    else {
-        chance = "X";
-    }
+    chance = chance === "X" ? "0" : "X";
 }
 
 function play(ele) {
-    if (ele.innerText == "") {
+    if (ele.innerText === "") {
         ele.innerText = chance;
         win();
         changeChance();
@@ -57,161 +43,45 @@ function play(ele) {
 }
 
 function win() {
-    if (box1.innerText == box2.innerText && box1.innerText == box3.innerText && box1.innerText != "") {
-        console.log(chance + "win");
-        horiTop.style.display = "flex"
-        setTimeout(() => {
-            result.style.display = "flex";
-            if (chance == "X") {
-                chance = "0"
-                chance = inp2.value
-            }
-            else {
-                chance = "X"
-                chance = inp1.value;
-            }
-            result.innerText = chance + " Is Win";
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
-        }, 1000);
+    const winPatterns = [
+        [box[0], box[1], box[2], horiTop],
+        [box[3], box[4], box[5], horiMiddle],
+        [box[6], box[7], box[8], horiBottom],
+        [box[0], box[3], box[6], virtop],
+        [box[1], box[4], box[7], virmiddle],
+        [box[2], box[5], box[8], virbottom],
+        [box[0], box[4], box[8], diag1],
+        [box[2], box[4], box[6], diag2]
+    ];
 
+    for (const [b1, b2, b3, line] of winPatterns) {
+        if (b1.innerText === b2.innerText && b1.innerText === b3.innerText && b1.innerText !== "") {
+            line.style.display = "flex";
+            setTimeout(() => displayResult(), 1000);
+            break;
+        }
     }
-    if (box4.innerText == box5.innerText && box4.innerText == box6.innerText && box4.innerText != "") {
-        console.log(chance + "win");
-        horiMiddle.style.display = "flex";
-        setTimeout(() => {
-            result.style.display = "flex";
-            if (chance == "X") {
-                chance = "0"
-                chance = inp2.value
-            }
-            else {
-                chance = "X"
-                chance = inp1.value;
-            }
-            result.innerText = chance + " Is Win";
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
-        }, 1000);
-    }
-    if (box7.innerText == box8.innerText && box7.innerText == box9.innerText && box7.innerText != "") {
-        console.log(chance + "win");
-        horiBottom.style.display = "flex"
-        setTimeout(() => {
-            result.style.display = "flex";
-            if (chance == "X") {
-                chance = "0"
-                chance = inp2.value
-            }
-            else {
-                chance = "X"
-                chance = inp1.value;
-            }
-            result.innerText = chance + " Is Win";
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
-        }, 1000);
-    }
+}
 
-    if (box1.innerText == box4.innerText && box1.innerText == box7.innerText && box1.innerText != "") {
-        console.log(chance + "win");
+function displayResult() {
+    result.style.display = "flex";
+    const winnerName = chance === "X" ? inp1.value : inp2.value;
+    result.innerHTML = `${winnerName} Is Win <button id='done'>Done</button>`;
+    document.getElementById("done").addEventListener("click", replay);
+}
 
-        virtop.style.display = "flex";
-        setTimeout(() => {
-            result.style.display = "flex";
-            if (chance == "X") {
-                chance = "0"
-                chance = inp2.value
-            }
-            else {
-                chance = "X"
-                chance = inp1.value;
-            }
-            result.innerText = chance + " Is Win";
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
-        }, 1000);
-
-    }
-    if (box2.innerText == box5.innerText && box2.innerText == box8.innerText && box2.innerText != "") {
-        console.log(chance + "win");
-        virmiddle.style.display = "flex";
-        setTimeout(() => {
-            result.style.display = "flex";
-            if (chance == "X") {
-                chance = "0"
-                chance = inp2.value
-            }
-            else {
-                chance = "X"
-                chance = inp1.value;
-            }
-            result.innerText = chance + " Is Win";
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
-        }, 1000);
-    }
-    if (box3.innerText == box6.innerText && box3.innerText == box9.innerText && box3.innerText != "") {
-        console.log(chance + "win");
-        virbottom.style.display = "flex";
-        setTimeout(() => {
-            result.style.display = "flex";
-            if (chance == "X") {
-                chance = "0"
-                chance = inp2.value
-            }
-            else {
-                chance = "X"
-                chance = inp1.value;
-            }
-            result.innerText = chance + " Is Win";
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
-        }, 1000);
-    }
-
-    if (box1.innerText == box5.innerText && box1.innerText == box9.innerText && box1.innerText != "") {
-        console.log(chance + "win");
-        diag1.style.display = "flex"
-        setTimeout(() => {
-            result.style.display = "flex";
-            if (chance == "X") {
-                chance = "0"
-                chance = inp2.value
-            }
-            else {
-                chance = "X"
-                chance = inp1.value;
-            }
-            result.innerText = chance + " Is Win";
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
-        }, 1000);
-    }
-    if (box3.innerText == box5.innerText && box3.innerText == box7.innerText && box3.innerText != "") {
-        console.log(chance + "win");
-        diag2.style.display = "flex";
-        setTimeout(() => {
-            result.style.display = "flex";
-            if (chance == "X") {
-                chance = "0"
-                chance = inp2.value
-            }
-            else {
-                chance = "X"
-                chance = inp1.value;
-            }
-            result.innerText = chance + " Is Win";
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
-        }, 1000);
-    }
+function replay() {
+    result.style.display = "none";
+    Array.from(box).forEach((element) => {
+        element.innerText = "";
+    });
+    horiTop.style.display = "none";
+    horiMiddle.style.display = "none";
+    horiBottom.style.display = "none";
+    virtop.style.display = "none";
+    virmiddle.style.display = "none";
+    virbottom.style.display = "none";
+    diag1.style.display = "none";
+    diag2.style.display = "none";
+    chance = "X";
 }
