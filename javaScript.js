@@ -54,34 +54,51 @@ function win() {
         [box[2], box[4], box[6], diag2]
     ];
 
+    let isWinner = false;
+
+    // Check for a win
     for (const [b1, b2, b3, line] of winPatterns) {
         if (b1.innerText === b2.innerText && b1.innerText === b3.innerText && b1.innerText !== "") {
-            line.style.display = "flex";
-            setTimeout(() => displayResult(), 1000);
+            line.style.display = "flex"; // Show the winning line
+            isWinner = true;
+            setTimeout(() => displayResult(b1.innerText), 1000); // Show the result after a delay
             break;
         }
     }
+
+    // Check for a draw if there's no winner and all boxes are filled
+    if (!isWinner && isBoardFull()) {
+        setTimeout(() => {
+            result.style.display = "flex";
+            result.innerHTML = "It's a Draw! <button id='done'>Replay</button>";
+            document.getElementById("done").addEventListener("click", replay);
+        }, 500);
+    }
 }
 
-function displayResult() {
+function isBoardFull() {
+    // Check if all boxes are filled
+    return Array.from(box).every((b) => b.innerText !== "");
+}
+
+function displayResult(winnerSymbol) {
     result.style.display = "flex";
-    const winnerName = chance === "X" ? inp2.value : inp1.value;
-    result.innerHTML = `${winnerName} Is Win <button id='done'>Done</button>`;
+
+    const winner = winnerSymbol === "X" ? inp1.value : inp2.value;
+    result.innerHTML = `${winner} Wins! <button id='done'>Replay</button>`;
+
+    // Handle Replay Button
     document.getElementById("done").addEventListener("click", replay);
 }
 
 function replay() {
-    result.style.display = "none";
-    Array.from(box).forEach((element) => {
-        element.innerText = "";
-    });
-    horiTop.style.display = "none";
-    horiMiddle.style.display = "none";
-    horiBottom.style.display = "none";
-    virtop.style.display = "none";
-    virmiddle.style.display = "none";
-    virbottom.style.display = "none";
-    diag1.style.display = "none";
-    diag2.style.display = "none";
-    chance = "X";
+    result.style.display = "none"; // Hide the result box
+    Array.from(box).forEach((b) => (b.innerText = "")); // Clear all box texts
+    chance = "X"; // Reset the initial chance to "X"
+    hideWinningLines(); // Hide any winning lines displayed
+}
+
+function hideWinningLines() {
+    const lines = [horiTop, horiMiddle, horiBottom, virtop, virmiddle, virbottom, diag1, diag2];
+    lines.forEach((line) => (line.style.display = "none"));
 }
