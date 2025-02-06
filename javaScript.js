@@ -65,7 +65,7 @@ function win() {
 
 function displayResult() {
     result.style.display = "flex";
-    const winnerName = chance === "X" ? inp1.value : inp2.value;
+    const winnerName = chance === "X" ? inp2.value : inp1.value;
     result.innerHTML = `${winnerName} Is Win <button id='done'>Done</button>`;
     document.getElementById("done").addEventListener("click", replay);
 }
